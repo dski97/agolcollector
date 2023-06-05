@@ -28,8 +28,11 @@
     require([ 
     "esri/config",
     "esri/Map", 
-    "esri/views/MapView" ], 
-    (esriConfig, Map, MapView) => {
+    "esri/views/MapView",
+    "esri/widgets/Locate",
+    "esri/widgets/Search",
+    "esri/layers/FeatureLayer", ], 
+    (esriConfig, Map, MapView, Locate, Search, FeatureLayer) => {
 
       //adding in API key
       esriConfig.apikey = "AAPK0401ef0eec41482c8aa0f4e7b5b118c24q7q7NIv8wbHpLPAB-Gvij3hfV_lpqWtqNzqcjDlMqJCmQc5meuAETYsSI2KOgu_";
@@ -45,6 +48,35 @@
         zoom: 14 // Sets zoom level based on level of detail (LOD)
       });
      
+      const locateBtn = new Locate({
+          view: view
+        });
+
+        // Add the locate widget to the top left corner of the view
+        view.ui.add(locateBtn, {
+          position: "top-left"
+        });
+
+        const searchWidget = new Search({
+        view: view,
+        suggestionsEnabled: true, // Enable suggestions for the widget
+        maxSuggestions: 3 // number of suggestions to return
+      });
+
+      //add the search widget to the top left corner of the view
+        view.ui.add(searchWidget, {
+          position: "top-left",
+          index: 2
+        });
+
+        // Create a feature layer from the ArcGIS Online item
+        const layer = new FeatureLayer({
+          // URL to the service
+          url: "https://services.arcgis.com/HRPe58bUyBqyyiCt/arcgis/rest/services/survey123_c4899416de7149bfb7f48f51ece6d06d_results/FeatureServer"
+        })
+
+        // Add the layer to the map
+        map.add(layer);
     
     });
     </script>
