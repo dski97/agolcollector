@@ -17,6 +17,25 @@
        height: 100%;
        width: 100%;
       }
+
+      .addRecordBtn {
+      position: absolute;
+      z-index: 10;
+      top: 10px;
+      right: 10px;
+      background-color: #0079c1;
+      color: white;
+      padding: 8px 16px;
+      border: none;
+      border-radius: 4px;
+      font-size: 14px;
+      cursor: pointer;
+      text-decoration: none;
+    }
+
+    .addRecordBtn:hover {
+      background-color: #005a87;
+    }
      </style>
 
   <!-- importing the css and libraries for esri.js-->
@@ -45,7 +64,7 @@
         container: "viewDiv", // Reference to the DOM node that will contain the view
         map: map, // References the map object created in step 3
         center: [-80.1918, 25.7617], //long, lat of miami, fl
-        zoom: 14 // Sets zoom level based on level of detail (LOD)
+        zoom: 12 // Sets zoom level based on level of detail (LOD)
       });
      
       const locateBtn = new Locate({
@@ -83,6 +102,7 @@
 
   </head>
   <body>
+    <a href="https://survey123.arcgis.com/share/c4899416de7149bfb7f48f51ece6d06d" target="_blank" class="addRecordBtn">Add Record</a> <!-- link to survey123 form -->
    <!-- viewDiv is the container where the map will be displayed -->
    <div id="viewDiv"></div>
   </body>
